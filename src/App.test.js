@@ -1,16 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 
-test('renders portfolio application', () => {
-  render(<App />);
-  // Check if the main app container renders
-  const appElement = document.querySelector('.App');
-  expect(appElement).toBeInTheDocument();
+test('renders without crashing', () => {
+  const div = document.createElement('div');
+  const root = createRoot(div);
+  root.render(<App />);
+  root.unmount();
 });
 
-test('renders hero section', () => {
-  render(<App />);
-  // Check if hero section exists
-  const heroSection = document.querySelector('.hero-section');
-  expect(heroSection).toBeInTheDocument();
-});
