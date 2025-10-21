@@ -1,70 +1,143 @@
-# Getting Started with Create React App
+# Amol Saxena - Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, professional portfolio website showcasing expertise in Python backend development, AI integration, and cloud deployment.
 
-## Available Scripts
+## 🌟 Features
 
-In the project directory, you can run:
+- Modern dark theme with neon green accents
+- Fully responsive mobile-first design
+- Smooth animations with Framer Motion
+- EmailJS contact form integration
+- SEO optimized with comprehensive meta tags
+- GitHub Pages ready deployment
 
-### `npm start`
+## 🛠️ Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React.js** - UI framework
+- **Framer Motion** - Animations
+- **EmailJS** - Contact form
+- **GitHub Pages** - Hosting
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Quick Start
 
-### `npm test`
+### 1. Install Dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install
+```
 
-### `npm run build`
+### 2. Configure EmailJS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Create `.env.local` file:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```env
+REACT_APP_EMAILJS_SERVICE_ID=your_service_id
+REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
+REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Get these values from [EmailJS](https://www.emailjs.com/)
 
-### `npm run eject`
+### 3. Run Development Server
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Visit `http://localhost:3000`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 4. Build for Production
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm run build
+```
 
-## Learn More
+### 5. Deploy to GitHub Pages
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run deploy
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📁 Project Structure
 
-### Code Splitting
+```
+src/
+├── components/
+│   ├── Hero/         # Landing section with stats
+│   ├── About/        # About & principles
+│   ├── Projects/     # Project showcase
+│   ├── Skills/       # Skills & services
+│   ├── Experience/   # Work timeline
+│   ├── Contact/      # Contact form
+│   └── Footer/       # Footer navigation
+├── data/
+│   ├── profile.js    # Personal info
+│   ├── projects.js   # Projects data
+│   ├── skills.js     # Technical skills
+│   └── experience.js # Work experience
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🎨 Customization
 
-### Analyzing the Bundle Size
+### Update Your Information
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Edit files in `src/data/`:
 
-### Making a Progressive Web App
+- `profile.js` - Name, email, social links
+- `projects.js` - Your projects
+- `skills.js` - Your skills
+- `experience.js` - Work history
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Change Colors
 
-### Advanced Configuration
+Edit `src/App.css`:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```css
+:root {
+  --color-primary: #00ff00;
+  --color-background: #0a0a0a;
+}
+```
 
-### Deployment
+## 📧 EmailJS Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Create account at [emailjs.com](https://www.emailjs.com/)
+2. Add email service (Gmail/Outlook)
+3. Create template with variables: `{{from_name}}`, `{{from_email}}`, `{{project_type}}`, `{{message}}`
+4. Copy Service ID, Template ID, and Public Key to `.env.local`
 
-### `npm run build` fails to minify
+## 📝 Available Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `npm start` - Development server
+- `npm run build` - Production build
+- `npm run deploy` - Deploy to GitHub Pages
+- `npm test` - Run tests
+
+## 🌐 Deployment Steps
+
+1. Create GitHub repository: `amsxna060.github.io`
+2. Update `homepage` in `package.json`
+3. Run `npm run deploy`
+4. Visit `https://amsxna060.github.io`
+
+## ✅ Checklist
+
+- [ ] Configure EmailJS credentials
+- [ ] Update personal information
+- [ ] Add professional photo
+- [ ] Add project screenshots
+- [ ] Upload resume PDF
+- [ ] Test on mobile devices
+- [ ] Deploy to GitHub Pages
+
+## 📞 Contact
+
+**Amol Saxena**
+
+- Email: amolsaxena060@gmail.com
+- GitHub: [@amsxna060](https://github.com/amsxna060)
+- LinkedIn: [amolsaxena060](https://linkedin.com/in/amolsaxena060)
+
+---
+
+Made with ❤️ using React & Modern Web Technologies
