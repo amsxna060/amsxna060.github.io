@@ -57,9 +57,9 @@ cd /Users/amolsaxena/Downloads/Portfolio/portfolio
 
 # Create the file
 cat > .env.local << 'EOF'
-REACT_APP_EMAILJS_SERVICE_ID=paste_your_service_id_here
-REACT_APP_EMAILJS_TEMPLATE_ID=paste_your_template_id_here
-REACT_APP_EMAILJS_PUBLIC_KEY=paste_your_public_key_here
+REACT_APP_EMAILJS_SERVICE_ID=service_ydagxfi
+REACT_APP_EMAILJS_TEMPLATE_ID=template_mrjzcgs
+REACT_APP_EMAILJS_PUBLIC_KEY=kIoIL-ef5JIjo6BA6
 EOF
 ```
 

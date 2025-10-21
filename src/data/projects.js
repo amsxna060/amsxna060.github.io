@@ -63,7 +63,7 @@ const projects = [
     subtitle: "Crowdfunding Platform for Startups",
     duration: "Jul 2024 - Dec 2024",
     status: "Completed",
-    repository: "https://github.com/amsxna060/SupportAGenious",
+    repository: "https://github.com/amsxna060/crowd-funding",
     liveDemo: null,
 
     description: `Full-stack crowdfunding platform enabling campaign creation and fund management 
