@@ -135,7 +135,7 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Profile Image Placeholder */}
+          {/* Profile Image */}
           <motion.div
             className="hero-image"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -144,14 +144,11 @@ const Hero = () => {
           >
             <div className="hero-image-wrapper">
               <div className="hero-image-glow"></div>
-              <div className="hero-image-placeholder">
-                <span>
-                  {name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </span>
-              </div>
+              <img 
+                src="/assets/profile-photo.jpg" 
+                alt={name}
+                className="hero-profile-photo"
+              />
             </div>
           </motion.div>
         </div>
