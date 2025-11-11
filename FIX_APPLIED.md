@@ -1,6 +1,7 @@
 # 🔧 GitHub Actions Fix Applied!
 
 ## ❌ Previous Error:
+
 ```
 npm error Missing: yaml@2.0.1 from lock file
 npm error Clean install a project
@@ -13,14 +14,17 @@ npm error Clean install a project
 ## ✅ What I Fixed:
 
 ### 1. Updated GitHub Actions Workflow
+
 **File:** `.github/workflows/deploy.yml`
 
 **Changes:**
+
 - ❌ Removed: `npm ci` (strict install)
 - ✅ Added: `npm install` (flexible install)
 - ❌ Removed: `cache: "npm"` (was causing issues)
 
 ### 2. Regenerated package-lock.json
+
 - Deleted old `package-lock.json`
 - Ran `npm install` to create fresh lock file
 - Committed and pushed to GitHub
@@ -32,6 +36,7 @@ npm error Clean install a project
 ### ✅ Changes Pushed Successfully!
 
 **New Workflow Triggered:**
+
 - Commit: `8650c12` - "Fix GitHub Actions: update workflow and regenerate package-lock"
 - Status: Running NOW!
 
@@ -42,6 +47,7 @@ npm error Clean install a project
 **GitHub Actions:** https://github.com/amsxna060/amsxna060.github.io/actions
 
 You should see a NEW workflow run starting now with:
+
 - ✅ Install dependencies (npm install)
 - ✅ Run tests
 - ✅ Build
@@ -78,6 +84,7 @@ You should see a NEW workflow run starting now with:
 ## 🎯 What to Expect:
 
 Once the workflow completes successfully:
+
 1. A new `gh-pages` branch will be created
 2. Your built React app will be deployed there
 3. GitHub Pages will serve your portfolio
@@ -88,17 +95,23 @@ Once the workflow completes successfully:
 ## 🔍 How to Verify:
 
 ### Step 1: Check Actions (NOW)
+
 Visit: https://github.com/amsxna060/amsxna060.github.io/actions
+
 - Look for green checkmark ✅
 - Should complete in 2-3 minutes
 
 ### Step 2: Check GitHub Pages Settings
+
 Visit: https://github.com/amsxna060/amsxna060.github.io/settings/pages
+
 - Source: `gh-pages` branch
 - Status: "Your site is published at..."
 
 ### Step 3: Visit Your Site!
+
 https://amsxna060.github.io
+
 - Hard refresh if needed: `Cmd+Shift+R`
 
 ---
@@ -106,11 +119,13 @@ https://amsxna060.github.io
 ## 📝 Technical Details:
 
 ### Why `npm ci` Failed:
+
 - `npm ci` requires exact dependency versions from package-lock.json
 - Your local package-lock.json had different versions than expected
 - This happens when dependencies are installed/updated at different times
 
 ### Why `npm install` Works:
+
 - More flexible - resolves dependencies based on package.json
 - Updates package-lock.json if needed
 - Better for CI/CD when lock file might be outdated
@@ -120,6 +135,7 @@ https://amsxna060.github.io
 ## ✨ Your Portfolio Features:
 
 Once live, you'll see:
+
 - ✅ **Hero Section** with your profile photo
 - ✅ **About Section** with your story
 - ✅ **Projects Section** with 3 featured projects
@@ -129,6 +145,7 @@ Once live, you'll see:
 - ✅ **Footer** with social links
 
 All with:
+
 - 🎨 Dark theme + neon green accents
 - ✨ Smooth Framer Motion animations
 - 📱 Fully responsive

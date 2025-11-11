@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaArrowDown } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaArrowDown, FaFileAlt } from "react-icons/fa";
 import {
   HiSparkles,
   HiCode,
@@ -132,6 +132,15 @@ const Hero = () => {
               >
                 <FaLinkedin />
               </a>
+              <a
+                href={social.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Resume"
+                title="View Resume"
+              >
+                <FaFileAlt />
+              </a>
             </motion.div>
           </motion.div>
 
@@ -144,8 +153,8 @@ const Hero = () => {
           >
             <div className="hero-image-wrapper">
               <div className="hero-image-glow"></div>
-              <img 
-                src="/assets/profile-photo.jpg" 
+              <img
+                src="/assets/profile-photo.jpg"
                 alt={name}
                 className="hero-profile-photo"
               />

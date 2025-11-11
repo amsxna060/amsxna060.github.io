@@ -15,6 +15,7 @@ const profile = {
   social: {
     github: "https://github.com/amsxna060",
     linkedin: "https://linkedin.com/in/amolsaxena060",
+    resume: "https://drive.google.com/file/d/1jfbnkloFLv0IYr6MP9yx6QqiQhe1WeeW/view?usp=sharing",
   },
 
   summary: `Software Developer with 3+ years of experience in automation, API development, 

@@ -1,9 +1,11 @@
 # 🔧 FINAL STEP - Configure GitHub Pages Source
 
 ## ✅ GitHub Actions: SUCCESS!
+
 Your code is built and deployed to the `gh-pages` branch successfully.
 
 ## ❌ Current Issue:
+
 GitHub Pages is still serving from the `main` branch (which has README.md), not the `gh-pages` branch (which has your built website).
 
 ---
@@ -11,6 +13,7 @@ GitHub Pages is still serving from the `main` branch (which has README.md), not 
 ## 🎯 FIX IT NOW (2 Minutes):
 
 ### Step 1: Go to GitHub Pages Settings
+
 **URL:** https://github.com/amsxna060/amsxna060.github.io/settings/pages
 
 (I just opened this in Simple Browser for you!)
@@ -20,12 +23,14 @@ GitHub Pages is still serving from the `main` branch (which has README.md), not 
 Look for the **"Build and deployment"** section:
 
 **Current Setting (WRONG):**
+
 ```
 Source: Deploy from a branch
 Branch: main / (root)
 ```
 
 **Change To (CORRECT):**
+
 ```
 Source: Deploy from a branch
 Branch: gh-pages / (root)
@@ -41,6 +46,7 @@ Branch: gh-pages / (root)
 3. Click **"Save"** button
 
 ### Step 4: Wait
+
 - GitHub Pages will rebuild (1-2 minutes)
 - You'll see a message: "Your site is published at https://amsxna060.github.io"
 
@@ -51,6 +57,7 @@ Branch: gh-pages / (root)
 **https://amsxna060.github.io**
 
 Wait 2-3 minutes after saving, then:
+
 - Hard refresh: `Cmd+Shift+R` (Mac) or `Ctrl+Shift+R` (Windows)
 - Or try incognito mode
 
@@ -59,6 +66,7 @@ Wait 2-3 minutes after saving, then:
 ## 🎯 What's Happening:
 
 ### Current Flow (WRONG):
+
 ```
 GitHub Pages
   ↓
@@ -68,6 +76,7 @@ Shows: README.md file ❌
 ```
 
 ### After Fix (CORRECT):
+
 ```
 GitHub Pages
   ↓
@@ -83,12 +92,14 @@ Shows: Your React Portfolio ✅
 After changing to `gh-pages` branch, you should see:
 
 **In GitHub Pages Settings:**
+
 ```
 ✅ Your site is live at https://amsxna060.github.io
    Source: gh-pages branch
 ```
 
 **On Your Site:**
+
 - ✅ Hero section with your photo
 - ✅ About section
 - ✅ Projects section
@@ -104,11 +115,13 @@ NOT the README file!
 ## ⚠️ Common Issues:
 
 ### If you don't see `gh-pages` in the dropdown:
+
 1. Go to: https://github.com/amsxna060/amsxna060.github.io/branches
 2. Check if `gh-pages` branch exists
 3. If not, the GitHub Actions didn't deploy - check Actions tab
 
 ### If `gh-pages` exists but still shows README:
+
 1. Make sure you selected `gh-pages` (not `main`)
 2. Make sure you clicked "Save"
 3. Wait 2-3 minutes
@@ -116,6 +129,7 @@ NOT the README file!
 5. Try incognito mode
 
 ### Still not working?
+
 1. Check: https://github.com/amsxna060/amsxna060.github.io/tree/gh-pages
 2. You should see `index.html`, `static/` folder, etc.
 3. If you see these files, it's deployed correctly
@@ -129,6 +143,7 @@ Your portfolio will be live at:
 **https://amsxna060.github.io**
 
 With:
+
 - ✨ Your profile photo with green ring
 - 🌟 Hover glow effect
 - 🎨 Dark theme with neon green

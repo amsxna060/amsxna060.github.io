@@ -37,6 +37,7 @@
 ## 🔍 WHY WAS IT SHOWING README BEFORE?
 
 The issue was:
+
 - ❌ GitHub Pages was trying to serve from the `main` branch
 - ❌ The `main` branch has source code, not the built website
 - ✅ GitHub Actions now builds your React app and deploys to `gh-pages` branch
@@ -47,11 +48,13 @@ The issue was:
 ## 📝 WHAT CHANGED:
 
 ### 1. Profile Photo
+
 - ✅ Added your photo to `/public/assets/profile-photo.jpg`
 - ✅ Updated `Hero.jsx` to display your photo instead of initials
 - ✅ Optimized photo size for faster loading
 
 ### 2. GitHub Actions
+
 - ✅ Workflow file exists at `.github/workflows/deploy.yml`
 - ✅ Automatically builds and deploys on every push to `main`
 - ✅ Creates/updates `gh-pages` branch with built files
@@ -61,16 +64,19 @@ The issue was:
 ## 🎯 NEXT STEPS:
 
 ### Step 1: Wait for GitHub Actions (2-3 minutes)
+
 Visit: https://github.com/amsxna060/amsxna060.github.io/actions
 
 Look for a green checkmark ✅
 
 ### Step 2: Configure GitHub Pages (if not auto-configured)
+
 1. Go to: https://github.com/amsxna060/amsxna060.github.io/settings/pages
 2. Under "Source", select: **gh-pages** branch
 3. Click **Save**
 
 ### Step 3: Visit Your Site! 🎉
+
 https://amsxna060.github.io
 
 ---
@@ -78,6 +84,7 @@ https://amsxna060.github.io
 ## 🐛 TROUBLESHOOTING:
 
 ### If GitHub Actions Fails:
+
 1. Check the Actions tab for error messages
 2. Common issues:
    - Node.js version mismatch (we use Node 18)
@@ -85,12 +92,14 @@ https://amsxna060.github.io
    - Build errors (test with `npm run build` locally)
 
 ### If Site Still Shows README:
+
 1. Go to Settings → Pages
 2. Make sure Source is set to **gh-pages** branch
 3. Wait 2-3 more minutes
 4. Hard refresh: `Cmd+Shift+R` (Mac) or `Ctrl+Shift+R` (Windows)
 
 ### If You See 404 Error:
+
 1. Check that repository name is EXACTLY: `amsxna060.github.io`
 2. Make sure repository is **Public**
 3. Wait 5-10 minutes for first deployment
@@ -125,6 +134,7 @@ Once deployed, your portfolio will show:
 7. **Footer** - Social links and navigation
 
 All with:
+
 - 🎨 Dark theme with neon green accents
 - ✨ Smooth animations
 - 📱 Mobile responsive
