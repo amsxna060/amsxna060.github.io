@@ -16,7 +16,7 @@ git add -A
 git commit -m "Deploy to GitHub Pages"
 
 echo "🔗 Pushing to gh-pages branch..."
-git push -f https://github.com/amsxna060/amolsaxena060.github.io.git gh-pages
+git push -f https://github.com/amsxna060/amsxna060.github.io.git gh-pages
 
 echo "✅ Deployment complete!"
 echo "🌐 Your site will be live at: https://amsxna060.github.io"
