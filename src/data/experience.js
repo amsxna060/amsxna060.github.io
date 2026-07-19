@@ -6,7 +6,7 @@ const experience = [
   {
     when: "APR 2022 — PRESENT",
     role: "Software Engineer · Python Backend",
-    org: "ValueLabs — Hyderabad, India",
+    org: "ValueLabs — Noida, India",
     points: [
       "Architected <b>Vansh Care</b> multi-agent WhatsApp system as sole backend engineer",
       "Cut LLM token spend by <b>45%</b> via model routing across OpenAI and Bedrock",

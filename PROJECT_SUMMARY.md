@@ -422,7 +422,7 @@ You now have a professional, modern portfolio website that:
 - Email: amolsaxena060@gmail.com
 - GitHub: [@amsxna060](https://github.com/amsxna060)
 - LinkedIn: [amolsaxena060](https://linkedin.com/in/amolsaxena060)
-- Location: Hyderabad, India
+- Location: Noida, India
 
 ---
 

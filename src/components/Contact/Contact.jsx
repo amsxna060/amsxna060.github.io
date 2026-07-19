@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { FaWhatsapp, FaGithub, FaLinkedin, FaCalendarAlt } from "react-icons/fa";
-import emailjs from "emailjs-com";
 import profile from "../../data/profile";
 import engagement, { showRates } from "../../data/engagement";
 
 /**
- * Contact — engagement models (with optional rates), EmailJS form,
- * WhatsApp deep link and optional booking link.
+ * Contact — engagement models (with optional rates), a form that emails the
+ * submission via Web3Forms (no backend needed), plus a WhatsApp deep link and
+ * optional booking link.
  */
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +14,7 @@ const Contact = () => {
     email: "",
     projectType: "AI chatbot / RAG on my data",
     message: "",
+    botcheck: "",
   });
   const [status, setStatus] = useState({ submitting: false, submitted: false, error: null });
 
@@ -24,25 +25,32 @@ const Contact = () => {
     e.preventDefault();
     setStatus({ submitting: true, submitted: false, error: null });
     try {
-      const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
-      const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
-      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
-      await emailjs.send(
-        serviceID,
-        templateID,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
+      const accessKey = process.env.REACT_APP_WEB3FORMS_KEY;
+      if (!accessKey) throw new Error("Missing REACT_APP_WEB3FORMS_KEY");
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: "New lead: " + formData.name + " — " + formData.projectType,
+          from_name: "Portfolio contact form",
+          name: formData.name,
+          email: formData.email,
           project_type: formData.projectType,
           message: formData.message,
           to_name: profile.name,
-        },
-        publicKey
-      );
+          botcheck: formData.botcheck, // honeypot — real users leave it empty
+        }),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error("Web3Forms error: " + (data.message || res.status));
+
       setStatus({ submitting: false, submitted: true, error: null });
-      setFormData({ name: "", email: "", projectType: "AI chatbot / RAG on my data", message: "" });
+      setFormData({ name: "", email: "", projectType: "AI chatbot / RAG on my data", message: "", botcheck: "" });
       setTimeout(() => setStatus({ submitting: false, submitted: false, error: null }), 6000);
     } catch (err) {
+      console.error("Contact form submit failed:", err);
       setStatus({
         submitting: false,
         submitted: false,
@@ -83,6 +91,17 @@ const Contact = () => {
 
         <div className="contact-wrap">
           <form onSubmit={handleSubmit}>
+            {/* Honeypot: hidden from humans, bots fill it and get rejected */}
+            <input
+              type="checkbox"
+              name="botcheck"
+              tabIndex="-1"
+              autoComplete="off"
+              checked={!!formData.botcheck}
+              onChange={(e) => setFormData({ ...formData, botcheck: e.target.checked })}
+              style={{ position: "absolute", left: "-9999px" }}
+              aria-hidden="true"
+            />
             <div className="field">
               <label htmlFor="name">Your name</label>
               <input id="name" name="name" type="text" required

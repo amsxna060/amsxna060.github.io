@@ -7,7 +7,7 @@ const profile = {
   name: "Amol Saxena",
   firstName: "Amol",
   title: "Python Backend & GenAI Systems Engineer",
-  eyebrow: "Python Backend · GenAI · Hyderabad, IN",
+  eyebrow: "Python Backend · GenAI · Noida, IN",
   // Hero headline is split so the accent span can be styled
   headline: { plain: "AI agents and backends that ", accent: "do real work." },
   sub: "I'm Amol — 4 years shipping production systems. FastAPI services, LangGraph multi-agent apps, WhatsApp automation and finance platforms that real businesses run on every single day.",
@@ -16,7 +16,7 @@ const profile = {
   phone: "+91 72485 43060",
   whatsapp: "917248543060", // used for wa.me deep link
   whatsappPrefill: "Hi Amol, I found you through your portfolio. I want to discuss a project.",
-  location: "Hyderabad, India",
+  location: "Noida, India",
 
   social: {
     github: "https://github.com/amsxna060",
