@@ -1,10 +1,14 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
+import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("renders without crashing", () => {
-  const div = document.createElement("div");
-  const root = createRoot(div);
-  root.render(<App />);
-  root.unmount();
+// Smoke test: the app renders and the hero headline is present.
+test("renders hero headline", () => {
+  render(<App />);
+  expect(screen.getByText(/do real work/i)).toBeInTheDocument();
+});
+
+// The deploy-blocking check: contact section must exist so clients can reach out.
+test("renders contact CTA", () => {
+  render(<App />);
+  expect(screen.getAllByText(/Start a project/i).length).toBeGreaterThan(0);
 });

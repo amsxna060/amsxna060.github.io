@@ -1,58 +1,32 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import {
-  FaEnvelope,
-  FaPhone,
-  FaMapMarkerAlt,
-  FaGithub,
-  FaLinkedin,
-  FaPaperPlane,
-} from "react-icons/fa";
+import { FaWhatsapp, FaGithub, FaLinkedin, FaCalendarAlt } from "react-icons/fa";
 import emailjs from "emailjs-com";
 import profile from "../../data/profile";
-import "./Contact.css";
+import engagement, { showRates } from "../../data/engagement";
 
 /**
- * Contact Section Component
- * Contact form with EmailJS integration
+ * Contact — engagement models (with optional rates), EmailJS form,
+ * WhatsApp deep link and optional booking link.
  */
 const Contact = () => {
-  const { email, phone, location, social } = profile;
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    projectType: "freelance",
+    projectType: "AI chatbot / RAG on my data",
     message: "",
   });
+  const [status, setStatus] = useState({ submitting: false, submitted: false, error: null });
 
-  const [formStatus, setFormStatus] = useState({
-    submitting: false,
-    submitted: false,
-    error: null,
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormStatus({ submitting: true, submitted: false, error: null });
-
+    setStatus({ submitting: true, submitted: false, error: null });
     try {
-      // EmailJS configuration - Replace with your actual IDs
-      // Get these from https://www.emailjs.com/
-      const serviceID =
-        process.env.REACT_APP_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
-      const templateID =
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
-      const publicKey =
-        process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
-
+      const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
+      const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
+      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
       await emailjs.send(
         serviceID,
         templateID,
@@ -61,221 +35,124 @@ const Contact = () => {
           from_email: formData.email,
           project_type: formData.projectType,
           message: formData.message,
-          to_name: "Amol Saxena",
+          to_name: profile.name,
         },
         publicKey
       );
-
-      setFormStatus({ submitting: false, submitted: true, error: null });
-      setFormData({
-        name: "",
-        email: "",
-        projectType: "freelance",
-        message: "",
-      });
-
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setFormStatus({ submitting: false, submitted: false, error: null });
-      }, 5000);
-    } catch (error) {
-      console.error("Email send error:", error);
-      setFormStatus({
+      setStatus({ submitting: false, submitted: true, error: null });
+      setFormData({ name: "", email: "", projectType: "AI chatbot / RAG on my data", message: "" });
+      setTimeout(() => setStatus({ submitting: false, submitted: false, error: null }), 6000);
+    } catch (err) {
+      setStatus({
         submitting: false,
         submitted: false,
-        error: "Failed to send message. Please try emailing directly.",
+        error: "Message didn't send. Ping me on WhatsApp instead — the green button on the right.",
       });
     }
   };
 
+  const waLink =
+    "https://wa.me/" +
+    profile.whatsapp +
+    "?text=" +
+    encodeURIComponent(profile.whatsappPrefill);
+
   return (
-    <section className="contact-section section section-alt" id="contact">
+    <section className="section" id="contact">
       <div className="container">
-        <motion.div
-          className="section-header text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2>Let's Build Something Amazing</h2>
-          <p className="section-subtitle">
-            Ready to bring your project to life? Get in touch!
+        <div className="section-head">
+          <div className="eyebrow">Work with me</div>
+          <h2>Three ways to engage</h2>
+        </div>
+
+        <div className="engage-grid">
+          {engagement.map((e) => (
+            <div className={"engage" + (e.hot ? " hot" : "")} key={e.title}>
+              <h4>{e.title}</h4>
+              <div className="fit">{e.fit}</div>
+              <p>{e.desc}</p>
+              {showRates && <div className="rate">{e.rate}</div>}
+            </div>
+          ))}
+        </div>
+        {showRates && (
+          <p className="rates-note">
+            * indicative starting points — every project gets a fixed quote after a free discovery call.
           </p>
-        </motion.div>
+        )}
 
-        <div className="contact-content">
-          {/* Contact Form */}
-          <motion.div
-            className="contact-form-wrapper"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <form className="contact-form card" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="name">Your Name *</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="John Doe"
-                />
-              </div>
+        <div className="contact-wrap">
+          <form onSubmit={handleSubmit}>
+            <div className="field">
+              <label htmlFor="name">Your name</label>
+              <input id="name" name="name" type="text" required
+                placeholder="Full name" value={formData.name} onChange={handleChange} />
+            </div>
+            <div className="field">
+              <label htmlFor="email">Email</label>
+              <input id="email" name="email" type="email" required
+                placeholder="So I can reach you" value={formData.email} onChange={handleChange} />
+            </div>
+            <div className="field">
+              <label htmlFor="projectType">What do you need?</label>
+              <select id="projectType" name="projectType"
+                value={formData.projectType} onChange={handleChange}>
+                <option>AI chatbot / RAG on my data</option>
+                <option>WhatsApp automation</option>
+                <option>Business management system</option>
+                <option>Backend API / integration</option>
+                <option>Hiring — full-time role</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div className="field">
+              <label htmlFor="message">Tell me about it</label>
+              <textarea id="message" name="message" rows="4" required
+                placeholder="A few lines is enough — I'll ask the right questions on our call."
+                value={formData.message} onChange={handleChange} />
+            </div>
+            <button className="btn btn-primary" type="submit" disabled={status.submitting}>
+              {status.submitting ? "Sending…" : "Send message →"}
+            </button>
+            {status.submitted && (
+              <div className="form-status ok">Message sent. I reply within 24 hours.</div>
+            )}
+            {status.error && <div className="form-status err">{status.error}</div>}
+          </form>
 
-              <div className="form-group">
-                <label htmlFor="email">Your Email *</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="john@example.com"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="projectType">I'm interested in *</label>
-                <select
-                  id="projectType"
-                  name="projectType"
-                  value={formData.projectType}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="freelance">Freelance Project</option>
-                  <option value="fulltime">Full-time Position</option>
-                  <option value="consultation">Consultation</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="message">Your Message *</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows="6"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-
-              {formStatus.error && (
-                <div className="form-message error">{formStatus.error}</div>
-              )}
-
-              {formStatus.submitted && (
-                <div className="form-message success">
-                  Message sent successfully! I'll get back to you soon.
-                </div>
-              )}
-
-              <button
-                type="submit"
-                className="btn btn-primary btn-submit"
-                disabled={formStatus.submitting}
-              >
-                {formStatus.submitting ? (
-                  "Sending..."
-                ) : (
-                  <>
-                    <FaPaperPlane /> Send Message
-                  </>
+          <div className="contact-side">
+            <div className="side-card">
+              <div className="k">Fastest way</div>
+              <div className="v" style={{ marginTop: 12 }}>
+                <a className="btn wa-btn btn-sm" href={waLink} target="_blank" rel="noopener noreferrer">
+                  <FaWhatsapp /> Chat on WhatsApp
+                </a>
+                {profile.social.calendly && (
+                  <a className="btn btn-ghost btn-sm" style={{ marginLeft: 10 }}
+                    href={profile.social.calendly} target="_blank" rel="noopener noreferrer">
+                    <FaCalendarAlt /> Book a call
+                  </a>
                 )}
-              </button>
-            </form>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            className="contact-info"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="info-card card-glass">
-              <h3>Get In Touch</h3>
-              <p>
-                Feel free to reach out for collaborations, freelance projects,
-                or just a friendly chat!
-              </p>
-
-              <div className="contact-methods">
-                <a href={`mailto:${email}`} className="contact-method">
-                  <div className="method-icon">
-                    <FaEnvelope />
-                  </div>
-                  <div className="method-content">
-                    <span className="method-label">Email</span>
-                    <span className="method-value">{email}</span>
-                  </div>
-                </a>
-
-                <a
-                  href={`tel:${phone.replace(/-/g, "")}`}
-                  className="contact-method"
-                >
-                  <div className="method-icon">
-                    <FaPhone />
-                  </div>
-                  <div className="method-content">
-                    <span className="method-label">Phone</span>
-                    <span className="method-value">{phone}</span>
-                  </div>
-                </a>
-
-                <div className="contact-method">
-                  <div className="method-icon">
-                    <FaMapMarkerAlt />
-                  </div>
-                  <div className="method-content">
-                    <span className="method-label">Location</span>
-                    <span className="method-value">{location}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="social-links">
-                <a
-                  href={social.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link"
-                  aria-label="GitHub"
-                >
-                  <FaGithub />
-                </a>
-                <a
-                  href={social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedin />
-                </a>
               </div>
             </div>
-
-            <div className="availability-card card-glass">
-              <h4>Current Availability</h4>
-              <div className="availability-status">
-                <div className="status-indicator available"></div>
-                <span>Available for new projects</span>
-              </div>
-              <p>Open to freelance work and full-time opportunities</p>
+            <div className="side-card">
+              <div className="k">Availability</div>
+              <div className="v mint avail"><span className="dot" />{profile.availability}</div>
             </div>
-          </motion.div>
+            <div className="side-card">
+              <div className="k">Email</div>
+              <div className="v"><a href={"mailto:" + profile.email}>{profile.email}</a></div>
+            </div>
+            <div className="side-card">
+              <div className="k">Elsewhere</div>
+              <div className="side-links">
+                <a href={profile.social.github} target="_blank" rel="noopener noreferrer"><FaGithub /> GitHub</a>
+                <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer"><FaLinkedin /> LinkedIn</a>
+                <a href={profile.social.financerbuddy} target="_blank" rel="noopener noreferrer">financerbuddy.com</a>
+                <a href={profile.resume} target="_blank" rel="noopener noreferrer">↓ Resume (PDF)</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

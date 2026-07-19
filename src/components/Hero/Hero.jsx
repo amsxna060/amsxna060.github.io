@@ -1,204 +1,92 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaArrowDown, FaFileAlt } from "react-icons/fa";
-import {
-  HiSparkles,
-  HiCode,
-  HiLightningBolt,
-  HiChartBar,
-} from "react-icons/hi";
+import React, { useEffect, useState, useRef } from "react";
 import profile from "../../data/profile";
-import "./Hero.css";
+import agentScenarios from "../../data/agentScenarios";
 
 /**
- * Hero Section Component
- * Main landing section with headline, CTA buttons, and stats
+ * Hero — headline + the signature cycling WhatsApp-agent demo panel.
  */
 const Hero = () => {
-  const { name, tagline, subtitle, social, stats } = profile;
+  const [idx, setIdx] = useState(0);
+  const reduced = useRef(
+    typeof window !== "undefined" &&
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  useEffect(() => {
+    if (reduced.current) return undefined;
+    const t = setInterval(
+      () => setIdx((i) => (i + 1) % agentScenarios.length),
+      5200
+    );
+    return () => clearInterval(t);
+  }, []);
 
-  // Icon mapping for stats
-  const getStatIcon = (iconName) => {
-    const icons = {
-      experience: <HiSparkles />,
-      projects: <HiCode />,
-      uptime: <HiLightningBolt />,
-      satisfaction: <HiChartBar />,
-    };
-    return icons[iconName] || <HiSparkles />;
-  };
+  const s = agentScenarios[idx];
 
   return (
-    <section className="hero-section" id="home">
-      <div className="hero-background">
-        <div className="hero-gradient"></div>
-        <div className="hero-grid"></div>
-      </div>
-
-      <div className="container">
-        <div className="hero-content">
-          {/* Main Content */}
-          <motion.div
-            className="hero-text"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.div
-              className="hero-badge"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
-            >
-              <HiSparkles /> Available for Freelance & Full-time
-            </motion.div>
-
-            <motion.h1
-              className="hero-title"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              {tagline}
-            </motion.h1>
-
-            <motion.p
-              className="hero-subtitle"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              <span className="gradient-text">{subtitle}</span>
-            </motion.p>
-
-            <motion.p
-              className="hero-description"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              Building scalable backend systems, integrating AI solutions, and
-              deploying cloud-native applications that empower businesses.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              className="hero-cta"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-            >
-              <button
-                className="btn btn-primary"
-                onClick={() => scrollToSection("projects")}
-              >
-                View Projects
-              </button>
-              <button
-                className="btn btn-outline"
-                onClick={() => scrollToSection("contact")}
-              >
-                Get In Touch
-              </button>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              className="hero-social"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-            >
-              <a
-                href={social.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub Profile"
-              >
-                <FaGithub />
-              </a>
-              <a
-                href={social.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn Profile"
-              >
-                <FaLinkedin />
-              </a>
-              <a
-                href={social.resume}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View Resume"
-                title="View Resume"
-              >
-                <FaFileAlt />
-              </a>
-            </motion.div>
-          </motion.div>
-
-          {/* Profile Image */}
-          <motion.div
-            className="hero-image"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <div className="hero-image-wrapper">
-              <div className="hero-image-glow"></div>
-              <img
-                src="/assets/profile-photo.jpg"
-                alt={name}
-                className="hero-profile-photo"
-              />
-            </div>
-          </motion.div>
+    <header className="hero" id="top">
+      <div className="container hero-grid">
+        <div>
+          <div className="eyebrow">{profile.eyebrow}</div>
+          <h1>
+            {profile.headline.plain}
+            <span className="accent">{profile.headline.accent}</span>
+          </h1>
+          <p className="sub">
+            I'm {profile.firstName} — 4 years shipping production systems.{" "}
+            <b>
+              FastAPI services, LangGraph multi-agent apps, WhatsApp automation
+            </b>{" "}
+            and finance platforms that real businesses run on every single day.
+          </p>
+          <div className="cta-row">
+            <a className="btn btn-primary" href="#contact">Start a project →</a>
+            <a className="btn btn-ghost" href="#work">See live work</a>
+          </div>
+          <div className="trust-chips">
+            {profile.trustChips.map((c) => (
+              <span key={c.text}>
+                <span className={"dot" + (c.tone === "gold" ? " gold" : "")} />
+                {c.text}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Stats Banner */}
-        <motion.div
-          className="hero-stats"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              className="stat-card card-glass"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 + index * 0.1, duration: 0.4 }}
-            >
-              <div className="stat-icon">{getStatIcon(stat.icon)}</div>
-              <div className="stat-content">
-                <div className="stat-value">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
+        <div>
+          <div className="agent-panel" aria-label="Demo of a business WhatsApp AI agent">
+            <div className="agent-head">
+              <div className="who">
+                <span className="agent-avatar">AI</span> Business Agent
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="hero-scroll"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          onClick={() => scrollToSection("about")}
-        >
-          <FaArrowDown />
-          <span>Scroll to explore</span>
-        </motion.div>
+              <span className="live"><span className="dot" />LIVE</span>
+            </div>
+            {/* key forces re-mount so entry animation replays per scenario */}
+            <div className="agent-body" key={idx}>
+              <div className="msg client">{s.client}</div>
+              <div className="msg agent" style={{ animationDelay: reduced.current ? "0s" : "0.9s" }}>
+                {s.agent}
+                <span className="r">{s.result}</span>
+              </div>
+            </div>
+            <div className="agent-foot">
+              <span>
+                scenario: <span className="scenario-tag">{s.tag}</span>
+              </span>
+              <div className="bars">
+                {agentScenarios.map((sc, i) => (
+                  <span key={sc.tag} className={"bar" + (i === idx ? " on" : "")} />
+                ))}
+              </div>
+            </div>
+          </div>
+          <p className="panel-caption">
+            ↑ this is a real service I build — an AI agent on your WhatsApp
+          </p>
+        </div>
       </div>
-    </section>
+    </header>
   );
 };
 

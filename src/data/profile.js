@@ -1,39 +1,46 @@
 /**
- * Profile Information
- * Central repository for personal and professional details
+ * Profile Information — central source of truth.
+ * Edit here; components read from this file.
  */
 
 const profile = {
   name: "Amol Saxena",
-  title: "Software Developer",
-  tagline: "Turning Ideas Into Digital Reality",
-  subtitle: "Python Backend | AI Integration | Cloud Deployment",
+  firstName: "Amol",
+  title: "Python Backend & GenAI Systems Engineer",
+  eyebrow: "Python Backend · GenAI · Hyderabad, IN",
+  // Hero headline is split so the accent span can be styled
+  headline: { plain: "AI agents and backends that ", accent: "do real work." },
+  sub: "I'm Amol — 4 years shipping production systems. FastAPI services, LangGraph multi-agent apps, WhatsApp automation and finance platforms that real businesses run on every single day.",
+
   email: "amolsaxena060@gmail.com",
-  phone: "7248-543-060",
+  phone: "+91 72485 43060",
+  whatsapp: "917248543060", // used for wa.me deep link
+  whatsappPrefill: "Hi Amol, I found you through your portfolio. I want to discuss a project.",
   location: "Hyderabad, India",
 
   social: {
     github: "https://github.com/amsxna060",
     linkedin: "https://linkedin.com/in/amolsaxena060",
-    resume: "https://drive.google.com/file/d/1jfbnkloFLv0IYr6MP9yx6QqiQhe1WeeW/view?usp=sharing",
+    financerbuddy: "https://financerbuddy.com",
+    // Create a free account at cal.com or calendly.com, paste the link here,
+    // and a "Book a call" button appears automatically in Contact.
+    calendly: "",
   },
 
-  summary: `Software Developer with 3+ years of experience in automation, API development, 
-  and backend applications. Proficient in Python, FastAPI, and SQL databases with hands-on 
-  experience in AI integration, cloud deployment, and modern web technologies. Strong background 
-  in client collaboration and delivering practical automation solutions.`,
+  resume: "/assets/resume.pdf",
 
-  valueProposition: `Empowering businesses through AI-powered solutions and robust backend systems. 
-  Specialized in building scalable APIs, intelligent automation, and seamless cloud deployments.`,
-
-  stats: [
-    { label: "Years Experience", value: "3+", icon: "experience" },
-    { label: "Projects Delivered", value: "10+", icon: "projects" },
-    { label: "Uptime Achievement", value: "95%+", icon: "uptime" },
-    { label: "Client Satisfaction", value: "100%", icon: "satisfaction" },
+  trustChips: [
+    { text: "FinancerBuddy — live in production", tone: "mint" },
+    { text: "4 yrs @ ValueLabs", tone: "gold" },
+    { text: "UK / US client experience", tone: "mint" },
   ],
 
-  resume: "/assets/resume.pdf",
+  trustLogos: [
+    "ValueLabs", "Canal+", "AWS", "OpenAI",
+    "Twilio", "Razorpay", "LangGraph", "Kafka",
+  ],
+
+  availability: "Open — freelance & full-time",
 };
 
 export default profile;

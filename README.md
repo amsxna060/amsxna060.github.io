@@ -1,143 +1,48 @@
-# Amol Saxena - Portfolio Website
+# amsxna060.github.io
 
-A modern, professional portfolio website showcasing expertise in Python backend development, AI integration, and cloud deployment.
+Personal portfolio of **Amol Saxena** — Python Backend & GenAI Systems Engineer.
+Live at **https://amsxna060.github.io**
 
-## 🌟 Features
+## Stack
 
-- Modern dark theme with neon green accents
-- Fully responsive mobile-first design
-- Smooth animations with Framer Motion
-- EmailJS contact form integration
-- SEO optimized with comprehensive meta tags
-- GitHub Pages ready deployment
+- React 19 (CRA) · Framer Motion · EmailJS
+- Single design-system stylesheet (`src/App.css`) — theme "Ledger Slate"
+- Deployed automatically to GitHub Pages via GitHub Actions on push to `main`
 
-## 🛠️ Tech Stack
+## Editing content
 
-- **React.js** - UI framework
-- **Framer Motion** - Animations
-- **EmailJS** - Contact form
-- **GitHub Pages** - Hosting
+All content is data-driven. Edit files in `src/data/` — no JSX changes needed:
 
-## 🚀 Quick Start
+| File | Controls |
+|---|---|
+| `profile.js` | name, headline, contacts, WhatsApp number, Calendly link, trust chips |
+| `services.js` | the six service cards |
+| `projects.js` | FinancerBuddy flagship + featured projects |
+| `testimonials.js` | client testimonials (**sample data — replace with real, permissioned clients**) |
+| `engagement.js` | engagement models + rates (`showRates: false` hides pricing) |
+| `skills.js`, `experience.js`, `process.js` | remaining sections |
 
-### 1. Install Dependencies
+## Run locally
 
 ```bash
 npm install
+npm start          # http://localhost:3000
 ```
 
-### 2. Configure EmailJS
+## Contact form (EmailJS)
 
-Create `.env.local` file:
-
-```env
-REACT_APP_EMAILJS_SERVICE_ID=your_service_id
-REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
-REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
-```
-
-Get these values from [EmailJS](https://www.emailjs.com/)
-
-### 3. Run Development Server
-
-```bash
-npm start
-```
-
-Visit `http://localhost:3000`
-
-### 4. Build for Production
-
-```bash
-npm run build
-```
-
-### 5. Deploy to GitHub Pages
-
-```bash
-npm run deploy
-```
-
-## 📁 Project Structure
+Create `.env.local`:
 
 ```
-src/
-├── components/
-│   ├── Hero/         # Landing section with stats
-│   ├── About/        # About & principles
-│   ├── Projects/     # Project showcase
-│   ├── Skills/       # Skills & services
-│   ├── Experience/   # Work timeline
-│   ├── Contact/      # Contact form
-│   └── Footer/       # Footer navigation
-├── data/
-│   ├── profile.js    # Personal info
-│   ├── projects.js   # Projects data
-│   ├── skills.js     # Technical skills
-│   └── experience.js # Work experience
+REACT_APP_EMAILJS_SERVICE_ID=...
+REACT_APP_EMAILJS_TEMPLATE_ID=...
+REACT_APP_EMAILJS_PUBLIC_KEY=...
 ```
 
-## 🎨 Customization
+Template variables: `from_name`, `from_email`, `project_type`, `message`, `to_name`.
+The receiving address is set in the EmailJS dashboard — point it at any inbox
+(e.g. a custom iCloud domain email) without code changes.
 
-### Update Your Information
+## Deploy
 
-Edit files in `src/data/`:
-
-- `profile.js` - Name, email, social links
-- `projects.js` - Your projects
-- `skills.js` - Your skills
-- `experience.js` - Work history
-
-### Change Colors
-
-Edit `src/App.css`:
-
-```css
-:root {
-  --color-primary: #00ff00;
-  --color-background: #0a0a0a;
-}
-```
-
-## 📧 EmailJS Setup
-
-1. Create account at [emailjs.com](https://www.emailjs.com/)
-2. Add email service (Gmail/Outlook)
-3. Create template with variables: `{{from_name}}`, `{{from_email}}`, `{{project_type}}`, `{{message}}`
-4. Copy Service ID, Template ID, and Public Key to `.env.local`
-
-## 📝 Available Scripts
-
-- `npm start` - Development server
-- `npm run build` - Production build
-- `npm run deploy` - Deploy to GitHub Pages
-- `npm test` - Run tests
-
-## 🌐 Deployment Steps
-
-1. Create GitHub repository: `amsxna060.github.io`
-2. Update `homepage` in `package.json`
-3. Run `npm run deploy`
-4. Visit `https://amsxna060.github.io`
-
-## ✅ Checklist
-
-- [ ] Configure EmailJS credentials
-- [ ] Update personal information
-- [ ] Add professional photo
-- [ ] Add project screenshots
-- [ ] Upload resume PDF
-- [ ] Test on mobile devices
-- [ ] Deploy to GitHub Pages
-
-## 📞 Contact
-
-**Amol Saxena**
-
-- Email: amolsaxena060@gmail.com
-- GitHub: [@amsxna060](https://github.com/amsxna060)
-- LinkedIn: [amolsaxena060](https://linkedin.com/in/amolsaxena060)
-
----
-
-Made with ❤️ using React & Modern Web Technologies
+Push to `main`. GitHub Actions builds, tests and publishes to Pages.
